@@ -1,7 +1,7 @@
 dnl $Id$ vim: syntax=config
 dnl Check for libdynamite
 
-AC_DEFUN(AM_PATH_LIBDYNAMITE, [
+AC_DEFUN([AM_PATH_LIBDYNAMITE], [
 
   AC_ARG_WITH(libdynamite,
     AC_HELP_STRING(

@@ -328,7 +328,7 @@ static void dynamite_add_to_dictionary(Dynamite* dynamite, uint8_t byte)/*{{{*/
   dynamite->dictionary[dynamite->window_offset] = byte;
 }/*}}}*/
 
-static uint8_t dynamite_get_from_dictionary(Dynamite* dynamite, int offset)/*{{{*/
+static uint8_t dynamite_get_from_dictionary(Dynamite* dynamite, unsigned offset)/*{{{*/
 {
   size_t window_offset = dynamite->window_offset;
   if (offset > window_offset)

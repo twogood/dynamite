@@ -35,9 +35,7 @@ typedef struct _Dynamite
   
   /* bit reader */
   uint8_t*          buffer;
-  size_t            size;
-  size_t            offset;
-  int               byte;
+  uint8_t           byte;
   int               bit;
 
   
@@ -111,39 +109,15 @@ exit:
   return success;
 }/*}}}*/
 
-bool dynamite_get_new_buffer(Dynamite* dynamite)/*{{{*/
-{
-  dynamite->size = dynamite_read(dynamite, dynamite->buffer, BUFFER_SIZE);
-  dynamite->offset = 0;
-  dynamite->byte = dynamite->buffer[dynamite->offset];
-
-  if (0 == dynamite->size)
-  {
-    dynamite->status = DYNAMITE_READ_ERROR;
-    return false;
-  } 
-  else
-    return true;
-}/*}}}*/
-
 static unsigned dynamite_read_bit(Dynamite* dynamite)/*{{{*/
 {
   /* XXX: this could probably be optimized */
   unsigned result;
 
-  if (dynamite->bit == 8)
+  if (8 == dynamite->bit)
   {
-    dynamite->offset++;
-    if (dynamite->offset == dynamite->size)
-    {
-      dynamite_get_new_buffer(dynamite);
-    }
-    else
-    {
-      dynamite->byte = dynamite->buffer[dynamite->offset];
-    }
-
-    dynamite->bit  = 0;
+    dynamite_read(dynamite, &dynamite->byte, 1);
+    dynamite->bit = 0;
   }
   
   result = dynamite->byte & 1;
@@ -398,9 +372,7 @@ DynamiteResult dynamite_explode(dynamite_reader reader, dynamite_writer writer, 
   if (!dynamite_read_header(&dynamite))
     goto exit;
 
-  if (!dynamite_get_new_buffer(&dynamite))
-    goto exit;
-  
+  dynamite.bit        = 8; /* causes update of byte */
   dynamite.status     = DYNAMITE_SUCCESS;
   dynamite.dictionary = malloc(dynamite.dictionary_size);
   memset(dynamite.dictionary, 0, dynamite.dictionary_size);
@@ -410,7 +382,7 @@ DynamiteResult dynamite_explode(dynamite_reader reader, dynamite_writer writer, 
 #if DEBUG
     fprintf(stderr, "%08x: ", dynamite.bytes_written);
 #endif
-    
+
     if (dynamite_read_bit(&dynamite))
     {
       /* Control token */
@@ -441,9 +413,9 @@ DynamiteResult dynamite_explode(dynamite_reader reader, dynamite_writer writer, 
     else
     {
       /* 
-        Literal token
+         Literal token
        */
-     
+
       /* TODO: handle encoded representation too */
       uint8_t byte = dynamite_read_bits_little_endian(&dynamite, 8) /*& 0xff*/;
       dynamite_write_byte(&dynamite, byte);
@@ -457,7 +429,7 @@ DynamiteResult dynamite_explode(dynamite_reader reader, dynamite_writer writer, 
 #if DEBUG
     fprintf(stderr, "\n");
 #endif
-   }
+  }
 
 exit:
   FREE(dynamite.buffer);

@@ -45,7 +45,7 @@ make
 
 %files devel
 %defattr(-,root,root)
-%{_includedir}/dynamite.h
+%{_includedir}/libdynamite.h
 %{_libdir}/libdynamite.so
 %{_libdir}/libdynamite.a
 %{_libdir}/libdynamite.la

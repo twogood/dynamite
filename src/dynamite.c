@@ -1,6 +1,7 @@
 /* $Id$ */
 #include "libdynamite.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 #define FCLOSE(file)    if (file) { fclose(file); file = NULL; }
 
@@ -25,8 +26,19 @@ int main(int argc, char** argv)
   int result = -1;
   Cookie cookie;
 
+  if (argc < 3)
+  {
+    fprintf(stderr, "Missing filenames");
+    return 1;
+  }
+
   cookie.input_file   = fopen(argv[1], "r");
   cookie.output_file  = fopen(argv[2], "w");
+
+  if (argc >= 4)
+  {
+    fseek(cookie.input_file, strtol(argv[3], NULL, 0), SEEK_SET);
+  }
 
   result = dynamite_explode(reader, writer, &cookie);
 

@@ -5,6 +5,11 @@
 #include <string.h>
 #include <assert.h>
 
+/*
+   This code probably looks really bad to anyone that is experienced with
+   (de)compression algorithms. But it works.
+ */
+
 #define DEBUG 0
 
 #if DEBUG

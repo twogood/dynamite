@@ -28,6 +28,7 @@ Requires: %{name} = %{version}
 See http://synce.sourceforge.net/ for more information.
 
 %prep
+rm -rf $RPM_BUILD_ROOT
 %setup
 
 %build

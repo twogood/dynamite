@@ -1,0 +1,44 @@
+# vim: tw=60
+%define prefix   /usr
+%define name     libdynamite
+%define rel      1
+
+Summary: Extract data compressed with PKWARE Data Compression Library
+Name: %{name}
+Version: YOU_DID_NOT_RUN_THE_BOOTSTRAP_SCRIPT
+Release: %{rel}
+License: MIT
+Group: Applications/Archiving
+Source: %{name}-%{version}.tar.gz
+URL: http://synce.sourceforge.net/
+Distribution: SynCE RPM packages
+Vendor: The SynCE Project
+Packager: David Eriksson <twogood@users.sourceforge.net>
+Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+%description
+
+
+%prep
+%setup
+
+%build
+%configure
+make
+
+%install
+%makeinstall
+
+%files
+%defattr(-,root,root)
+%doc README LICENSE
+%{_bindir}/dynamite
+%{_libdir}/libdynamite.so.*
+
+%files devel
+%defattr(-,root,root)
+%{_includedir}/dynamite.h
+%{_libdir}/libdynamite.so
+%{_libdir}/libdynamite.a
+%{_libdir}/libdynamite.la
+

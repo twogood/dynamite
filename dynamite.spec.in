@@ -39,7 +39,7 @@ make
 
 %files
 %defattr(-,root,root)
-%doc README LICENSE
+%doc LICENSE
 %{_bindir}/dynamite
 %{_libdir}/libdynamite.so.*
 

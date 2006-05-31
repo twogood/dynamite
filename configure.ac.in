@@ -7,12 +7,13 @@ AC_CANONICAL_TARGET
 AM_INIT_AUTOMAKE(libdynamite, YOU_DID_NOT_RUN_THE_BOOTSTRAP_SCRIPT)
 AM_CONFIG_HEADER(config.h)
 
-AC_SUBST(APPLE_CFLAGS)
+CFLAGS="-Wall -Wsign-compare -Wno-long-long $CFLAGS"
+
 case $target in
 
 	powerpc-apple-*)
 		dnl Prevent "Undefined Macro argument list" error.
-		APPLE_CFLAGS="-no-cpp-precomp"
+		CFLAGS="-no-cpp-precomp $CFLAGS"
 		;;
 
 esac
@@ -32,7 +33,7 @@ AC_LIB_RPATH
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
 
-AC_OUTPUT([Makefile
+AC_OUTPUT([libdynamite.pc
+           Makefile
            lib/Makefile
            src/Makefile])
-

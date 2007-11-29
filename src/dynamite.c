@@ -28,12 +28,21 @@ int main(int argc, char** argv)
 
   if (argc < 3)
   {
-    fprintf(stderr, "Missing filenames");
+    fprintf(stderr, "usage: dynamite <input_file> <output_file> [input_offset]\n");
     return 1;
   }
 
-  cookie.input_file   = fopen(argv[1], "r");
-  cookie.output_file  = fopen(argv[2], "w");
+  if (!(cookie.input_file   = fopen(argv[1], "r"))) {
+    fprintf(stderr, "dynamite: error opening file %s for input: ", argv[1]);
+    perror(NULL);
+    return 1;
+  }
+
+  if (!(cookie.output_file  = fopen(argv[2], "w"))) {
+    fprintf(stderr, "dynamite: error opening file %s for output: ", argv[2]);
+    perror(NULL);
+    return 1;
+  }
 
   if (argc >= 4)
   {

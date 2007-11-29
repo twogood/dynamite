@@ -15,4 +15,4 @@ EXTRA_DIST = libdynamite.pc.in
 
 CLEANFILES = $(pcfiles)
 
-SUBDIRS = lib src
+SUBDIRS = lib src man

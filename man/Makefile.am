@@ -1,0 +1,3 @@
+man_MANS = dynamite.1
+
+EXTRA_DIST = $(man_MANS)

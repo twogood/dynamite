@@ -36,4 +36,5 @@ AC_C_CONST
 AC_OUTPUT([libdynamite.pc
            Makefile
            lib/Makefile
+           man/Makefile
            src/Makefile])

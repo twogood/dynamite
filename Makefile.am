@@ -11,7 +11,7 @@ all_local: $(pcfiles)
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = $(pcfiles)
 
-EXTRA_DIST = libdynamite.pc.in
+EXTRA_DIST = libdynamite.pc.in LICENSE
 
 CLEANFILES = $(pcfiles)
 

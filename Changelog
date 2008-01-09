@@ -1,3 +1,8 @@
+2008-01-09  Mark Ellis  <mark@mpellis.org.uk>
+
+	* added LICENSE to EXTRA_DIST
+	* renamed Changelog to ChangeLog for make dist
+
 2007-11-29  Mark Ellis <mark_ellis@users.sourceforge.net>
 
 	* from Debian package, man page for dynamite

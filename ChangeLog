@@ -1,3 +1,9 @@
+2010-03-23  David Eriksson  <twogood@users.sourceforge.net>
+
+	* VERSION: Upped the version number.
+
+	* src/id-shr-extract.c: Added submitted code to extract ID Softwhare .SHR files.
+
 2008-05-11  Mark Ellis  <mark@mpellis.org.uk>
 
 	* man patch fix, thanks to Evgeni Golov

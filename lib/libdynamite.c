@@ -78,11 +78,17 @@ static bool dynamite_read_header(Dynamite* dynamite)/*{{{*/
     case 1:
       /* encoded literal representation, not (yet) supported, fall through */
       dynamite->status = DYNAMITE_NOT_IMPLEMENTED;
+#if DEBUG
+    fprintf(stderr, "Encoded literal representation not yet supported.\n");
+#endif
       goto exit;
 
     default:
       /* not compressed with this algorithm! */
       dynamite->status = DYNAMITE_BAD_FORMAT;
+#if DEBUG
+    fprintf(stderr, "Unknown format: %i\n", header[0]);
+#endif
       goto exit;
   }
 
@@ -100,6 +106,9 @@ static bool dynamite_read_header(Dynamite* dynamite)/*{{{*/
     default:
       /* not compressed with this algorithm! */
       dynamite->status = DYNAMITE_BAD_FORMAT;
+#if DEBUG
+    fprintf(stderr, "Unknown dictionary bits: %i\n", dynamite->dictionary_bits);
+#endif
       goto exit;
   }
 

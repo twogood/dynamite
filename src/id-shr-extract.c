@@ -12,9 +12,9 @@
 
 struct cookie_s {
   char *in_buffer;
-  int in_buffer_remaining;
+  size_t in_buffer_remaining;
   int in_buffer_index;
-  int in_buffer_size;
+  size_t in_buffer_size;
   FILE* out_file;
 };   
 
@@ -44,10 +44,10 @@ int main(int argc, char *argv[])
   FILE *in_file;
   char filename[16];
   unsigned char buf[4];
-  int i, compressed_size;
+  size_t i, compressed_size;
     
   if (argc != 2) {
-    fprintf(stderr, "%s: Usage: %s <filename.CHR> %d\n", argv[0], argv[0], argc);
+    fprintf(stderr, "%s: Usage: %s <filename.SHR> %d\n", argv[0], argv[0], argc);
     return 1;
   }
   

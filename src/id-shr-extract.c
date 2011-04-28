@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
   size_t i, compressed_size;
     
   if (argc != 2) {
-    fprintf(stderr, "%s: Usage: %s <filename.SHR> %d\n", argv[0], argv[0], argc);
+    fprintf(stderr, "%s: Usage: %s <filename.SHR>\n", argv[0], argv[0]);
     return 1;
   }
   
